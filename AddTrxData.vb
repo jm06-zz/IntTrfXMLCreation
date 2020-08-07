@@ -242,7 +242,7 @@
     End Sub
 
 
-    ' execute the SQL query to add the allocatoion row with correct allocation code
+    ' execute the SQL query to add the allocation row with correct allocation code
     Sub AddAllocationRow(Id As Long, sAllocationCode As String, sBusinessUnit As String, sDrCr As String)
         ' create a new row with the allocation code
         Dim sqCon As New SqlClient.SqlConnection(TfrFunctions.SQL_Connectionstring)

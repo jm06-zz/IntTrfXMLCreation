@@ -72,6 +72,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DirLogAppend.vb" />
     <Compile Include="EMail.vb" />
     <Compile Include="IntTrfUpload.vb" />
     <Compile Include="AddTrxData.vb" />

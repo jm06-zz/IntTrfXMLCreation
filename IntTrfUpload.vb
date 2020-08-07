@@ -19,13 +19,23 @@
         sqCon.Open()
         sqCmd.CommandText = "SELECT CurrentState FROM TFR_CONFIG"
         sdrRow = sqCmd.ExecuteReader()
+
+#If DEBUG Then
+        DirLogAppend.Log("Before sdrRow.Read ")
+#End If
+
         While sdrRow.Read()
             sState = sdrRow.GetValue(sdrRow.GetOrdinal("CurrentState"))
         End While
         sqCon.Close()
 
+#If DEBUG Then
+        DirLogAppend.Log("Before If TfrFunctions.sCompileEMail <> No Mail Then => TfrFunctions.sCompileEMail = " & TfrFunctions.sCompileEMail)
+#End If
+
         ' we will check for error first and send out notification if any files remains un-imported
         If TfrFunctions.sCompileEMail <> "No Mail" Then
+
             ' need to compile an error e-mail and send to recipients
             ErrorMail.SetConnectionSettings()
             ErrorMail.sBody = TfrFunctions.sCompileEMail()
@@ -35,6 +45,12 @@
 
         Else
             Console.WriteLine("All imports up to date - no error and no e-mail sent")
+            ' JMD 2020-AUG-07 - Commented out to prevent firing no error emails  
+            ' TfrFunctions.sCompileEMail()
+#If DEBUG Then
+            DirLogAppend.Log("Console.WriteLine(All imports up to date - no error and no e-mail sent)")
+#End If
+
         End If
 
         ' truncate the current_upload table that will be filled with transactions to export

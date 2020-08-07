@@ -31,8 +31,6 @@ Module TfrFunctions
 
         sqCmd.CommandText = "SELECT ReserveAccount FROM TFR_MAPPING WHERE T8 = '" & sT8 & "'"
 
-
-
         sdrRow = sqCmd.ExecuteReader
 
         ' sdrRow.Read()
@@ -236,9 +234,18 @@ ErrorHandler:
                     sCompileEMail = sCompileEMail + vbCrLf + sdrRow.GetValue(0) + vbCrLf
                 End While
                 sCompileEMail = sCompileEMail + vbCrLf + vbCrLf + "Please find and import outstanding files to eliminate errors."
+
+#If DEBUG Then
+                DirLogAppend.Log("reminder sCompileEMail() " & sCompileEMail.ToString)
+#End If
+
             Else
                 ' no error occurred
                 sCompileEMail = "No Mail"
+
+#If DEBUG Then
+                DirLogAppend.Log("no error sCompileEMail() " & sCompileEMail.ToString)
+#End If
             End If
         Catch ex As Exception
             sCompileEMail = "Error in reading the error view! Please contact developer - " & ex.Message

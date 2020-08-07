@@ -2,7 +2,7 @@
 
     ' all the CSV and XML files are created within this module.
     ' It also adds all records that has been extracted to the upload history table
-    ' there are 3 seperate instances where the folder configuration need to change if that is needed
+    ' there are 3 separate instances where the folder configuration need to change if that is needed
     Sub CreateFiles()
 
         ' this module creates xml files for each of the distinct journal types
@@ -22,7 +22,6 @@
 
         ' loop through all the different journal types and create files for each
         While sdrRow.Read()
-
             CreateJrnlFile(sdrRow.GetValue(0))
             CreateJrnlFileCSV(sdrRow.GetValue(0))
         End While

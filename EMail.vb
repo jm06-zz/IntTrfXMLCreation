@@ -98,9 +98,12 @@ Public Class EMail
         Dim Attachments As New List(Of String)
         Dim sResponse As String
 
-
         sResponse = SendEmail(Recipients, sFromAddress, sSubject, sBody, sUsername, sPassword, sServer, iPort, Attachments)
         Console.WriteLine(sResponse)
+
+#If DEBUG Then
+        DirLogAppend.Log("SendErrorMail() " & sResponse)
+#End If
 
     End Sub
 
